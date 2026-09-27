@@ -48,7 +48,7 @@
         filter: drop-shadow(0 0 15px #aaa6ff);
     }
 
-    /* Game information */
+    /* Top information */
     #topBar {
         position: absolute;
         top: 10px;
@@ -134,6 +134,18 @@
         left: 7px;
         top: 11px;
         box-shadow: 11px 0 #242039;
+    }
+
+    /* Key in player's hand */
+    #player.hasKey::after {
+        content: "🔑";
+        position: absolute;
+        font-size: 21px;
+        right: -18px;
+        top: 14px;
+        z-index: 20;
+        transform: rotate(-15deg);
+        filter: drop-shadow(0 0 3px #d8c8ff);
     }
 
     /* Houses */
@@ -388,6 +400,7 @@
     }
 
     @media (max-width: 600px) {
+
         #title {
             font-size: 15px;
         }
@@ -432,49 +445,80 @@
 
     <!-- Top information -->
     <div id="topBar">
+
         <div>
-            <div id="title">🌙 Find the Moon - Escape Game</div>
-            <div id="areaText">Area 1 / 3</div>
+            <div id="title">
+                🌙 Find the Moon - Escape Game
+            </div>
+
+            <div id="areaText">
+                Area 1 / 3
+            </div>
         </div>
 
-        <div id="timer">05:00</div>
+        <div id="timer">
+            05:00
+        </div>
+
     </div>
+
 
     <!-- Game world -->
     <div id="world">
 
         <div id="ground"></div>
 
+
         <!-- Houses -->
         <div class="house" style="left:8%;bottom:40%;">
+
             <div class="window"></div>
+
             <div class="doorHouse"></div>
+
         </div>
 
+
         <div class="house" style="left:52%;bottom:43%;">
+
             <div class="window"></div>
+
             <div class="doorHouse"></div>
+
         </div>
+
 
         <!-- Trees -->
         <div class="tree" style="left:30%;bottom:40%;"></div>
+
         <div class="tree" style="left:72%;bottom:39%;"></div>
+
         <div class="tree" style="left:85%;bottom:45%;"></div>
+
 
         <!-- Street lights -->
         <div class="streetLight" style="left:25%;bottom:40%;"></div>
+
         <div class="streetLight" style="left:68%;bottom:40%;"></div>
 
+
         <!-- Key box -->
-        <div id="keyBox">🔒</div>
+        <div id="keyBox">
+            🔒
+        </div>
+
 
         <!-- Door -->
-        <div id="door" class="locked">🚪</div>
+        <div id="door" class="locked">
+            🚪
+        </div>
+
 
         <!-- Player -->
         <div id="player"></div>
 
     </div>
+
 
     <!-- Mission -->
     <div id="missionPanel">
@@ -493,15 +537,19 @@
 
     </div>
 
+
     <!-- Message -->
     <div id="message">
         Use the arrow keys to move.
     </div>
 
+
     <!-- End screen -->
     <div id="endScreen">
 
-        <h1 id="endTitle">You win 🌟</h1>
+        <h1 id="endTitle">
+            You win 🌟
+        </h1>
 
         <p id="endText">
             You escaped the night!
@@ -518,110 +566,166 @@
 
 <script>
 
-    /* ==============================
-       GAME SETTINGS
-       ============================== */
+/* ==============================
+   GAME SETTINGS
+   ============================== */
 
-    const GAME_TIME = 300; // 5 minutes
+const GAME_TIME = 300;
 
-    let timeLeft = GAME_TIME;
-    let timer;
+let timeLeft = GAME_TIME;
 
-    let currentArea = 1;
+let timer;
 
-    let hasKey = false;
-    let missionCompleted = false;
+let currentArea = 1;
 
-    let gameOver = false;
+let hasKey = false;
 
-    /*
-       Player position
-       x and y are percentages.
-    */
+let missionCompleted = false;
 
-    let playerX = 10;
-    let playerY = 72;
-
-    const moveSpeed = 2.5;
+let gameOver = false;
 
 
-    /* ==============================
-       GET HTML ELEMENTS
-       ============================== */
+/* ==============================
+   PLAYER POSITION
+   ============================== */
 
-    const player = document.getElementById("player");
-    const keyBox = document.getElementById("keyBox");
-    const door = document.getElementById("door");
+let playerX = 10;
+let playerY = 72;
 
-    const timerText = document.getElementById("timer");
-    const areaText = document.getElementById("areaText");
-
-    const message = document.getElementById("message");
-
-    const missionPanel = document.getElementById("missionPanel");
-    const missionText = document.getElementById("missionText");
-    const choices = document.getElementById("choices");
-    const missionButton = document.getElementById("missionButton");
-
-    const endScreen = document.getElementById("endScreen");
-    const endTitle = document.getElementById("endTitle");
-    const endText = document.getElementById("endText");
-
-    const restartButton = document.getElementById("restartButton");
+const moveSpeed = 2.5;
 
 
-    /* ==============================
-       AREA INFORMATION
-       ============================== */
+/* ==============================
+   GET HTML ELEMENTS
+   ============================== */
 
-    const areas = {
+const player =
+    document.getElementById("player");
 
-        1: {
-            mission: "Find the correct number: 2 + 3 = ?",
-            answers: ["4", "5", "6"],
-            correct: "5"
-        },
+const keyBox =
+    document.getElementById("keyBox");
 
-        2: {
-            mission: "Which one is different? 🌙 ⭐ 🌲 🍎",
-            answers: ["🌙", "⭐", "🌲", "🍎"],
-            correct: "🍎"
-        },
+const door =
+    document.getElementById("door");
 
-        3: {
-            mission: "Remember this: BLUE → PURPLE → BLACK. What comes after PURPLE?",
-            answers: ["BLUE", "PURPLE", "BLACK"],
-            correct: "BLACK"
-        }
+const timerText =
+    document.getElementById("timer");
 
-    };
+const areaText =
+    document.getElementById("areaText");
+
+const message =
+    document.getElementById("message");
+
+const missionPanel =
+    document.getElementById("missionPanel");
+
+const missionText =
+    document.getElementById("missionText");
+
+const choices =
+    document.getElementById("choices");
+
+const missionButton =
+    document.getElementById("missionButton");
+
+const endScreen =
+    document.getElementById("endScreen");
+
+const endTitle =
+    document.getElementById("endTitle");
+
+const endText =
+    document.getElementById("endText");
+
+const restartButton =
+    document.getElementById("restartButton");
 
 
-    /* ==============================
-       PLAYER POSITION
-       ============================== */
+/* ==============================
+   AREA INFORMATION
+   ============================== */
 
-    function updatePlayer() {
+const areas = {
 
-        player.style.left = playerX + "%";
-        player.style.top = playerY + "%";
+    1: {
+
+        mission:
+            "Find the correct number: 2 + 3 = ?",
+
+        answers:
+            ["4", "5", "6"],
+
+        correct:
+            "5"
+
+    },
+
+
+    2: {
+
+        mission:
+            "Which one is different? 🌙 ⭐ 🌲 🍎",
+
+        answers:
+            ["🌙", "⭐", "🌲", "🍎"],
+
+        correct:
+            "🍎"
+
+    },
+
+
+    3: {
+
+        mission:
+            "Remember this: BLUE → PURPLE → BLACK. What comes after PURPLE?",
+
+        answers:
+            ["BLUE", "PURPLE", "BLACK"],
+
+        correct:
+            "BLACK"
 
     }
 
+};
 
-    /* ==============================
-       MOVE PLAYER
-       ============================== */
 
-    document.addEventListener("keydown", function(event) {
+/* ==============================
+   UPDATE PLAYER
+   ============================== */
+
+function updatePlayer() {
+
+    player.style.left =
+        playerX + "%";
+
+    player.style.top =
+        playerY + "%";
+
+}
+
+
+/* ==============================
+   MOVE PLAYER
+   ============================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
 
         if (gameOver) {
             return;
         }
 
-        if (missionPanel.style.display === "block") {
+
+        if (
+            missionPanel.style.display === "block"
+        ) {
             return;
         }
+
 
         if (
             event.key === "ArrowUp" ||
@@ -641,17 +745,20 @@
 
         }
 
+
         if (event.key === "ArrowDown") {
 
             playerY += moveSpeed;
 
         }
 
+
         if (event.key === "ArrowLeft") {
 
             playerX -= moveSpeed;
 
         }
+
 
         if (event.key === "ArrowRight") {
 
@@ -662,415 +769,568 @@
 
         /* Keep player inside the area */
 
-        playerX = Math.max(3, Math.min(91, playerX));
-        playerY = Math.max(8, Math.min(86, playerY));
+        playerX =
+            Math.max(
+                3,
+                Math.min(91, playerX)
+            );
+
+        playerY =
+            Math.max(
+                8,
+                Math.min(86, playerY)
+            );
 
 
         updatePlayer();
 
         checkObjects();
 
-    });
+    }
+);
 
 
-    /* ==============================
-       CHECK OBJECTS
-       ============================== */
+/* ==============================
+   CHECK OBJECTS
+   ============================== */
 
-    function checkObjects() {
+function checkObjects() {
 
-        /*
-           Key box position changes slightly
-           depending on the area.
-        */
+    let boxX;
 
-        let boxX;
-        let boxY;
-
-        if (currentArea === 1) {
-
-            boxX = 70;
-            boxY = 68;
-
-        } else if (currentArea === 2) {
-
-            boxX = 30;
-            boxY = 30;
-
-        } else {
-
-            boxX = 65;
-            boxY = 25;
-
-        }
+    let boxY;
 
 
-        /* Check key box */
+    if (currentArea === 1) {
 
-        if (
-            !missionCompleted &&
-            Math.abs(playerX - boxX) < 8 &&
-            Math.abs(playerY - boxY) < 10
-        ) {
+        boxX = 70;
 
-            openMission();
+        boxY = 68;
 
-        }
+    }
 
+    else if (currentArea === 2) {
 
-        /* Check door */
+        boxX = 30;
 
-        if (
-            hasKey &&
-            playerX > 82 &&
-            playerY > 35 &&
-            playerY < 75
-        ) {
+        boxY = 30;
 
-            openDoor();
+    }
 
-        }
+    else {
+
+        boxX = 65;
+
+        boxY = 25;
 
     }
 
 
-    /* ==============================
-       OPEN MISSION
-       ============================== */
+    /* Check key box */
 
-    function openMission() {
+    if (
+        !missionCompleted &&
+        Math.abs(playerX - boxX) < 8 &&
+        Math.abs(playerY - boxY) < 10
+    ) {
 
-        missionPanel.style.display = "block";
+        openMission();
 
-        missionText.textContent = areas[currentArea].mission;
+    }
 
-        choices.innerHTML = "";
 
-        const answers = areas[currentArea].answers;
+    /* Check door */
 
-        answers.forEach(function(answer) {
+    if (
+        hasKey &&
+        playerX > 82 &&
+        playerY > 35 &&
+        playerY < 75
+    ) {
 
-            const button = document.createElement("button");
+        openDoor();
 
-            button.className = "choice";
+    }
 
-            button.textContent = answer;
+}
 
-            button.onclick = function() {
 
-                checkAnswer(answer);
+/* ==============================
+   OPEN MISSION
+   ============================== */
 
-            };
+function openMission() {
+
+    missionPanel.style.display =
+        "block";
+
+
+    missionText.textContent =
+        areas[currentArea].mission;
+
+
+    choices.innerHTML = "";
+
+
+    const answers =
+        areas[currentArea].answers;
+
+
+    answers.forEach(
+        function(answer) {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "choice";
+
+            button.textContent =
+                answer;
+
+
+            button.onclick =
+                function() {
+
+                    checkAnswer(answer);
+
+                };
+
 
             choices.appendChild(button);
 
-        });
-
-    }
-
-
-    /* ==============================
-       CHECK ANSWER
-       ============================== */
-
-    function checkAnswer(answer) {
-
-        if (answer === areas[currentArea].correct) {
-
-            missionCompleted = true;
-
-            hasKey = true;
-
-            keyBox.textContent = "🔑";
-
-            keyBox.style.background = "#4a345d";
-
-            door.classList.remove("locked");
-
-            message.textContent =
-                "Correct! You got the key. Find the door!";
-
-            missionText.textContent =
-                "Correct! The box is open. You got the key! 🔑";
-
-            choices.innerHTML = "";
-
-        } else {
-
-            message.textContent =
-                "Not correct! Try again.";
-
         }
+    );
 
-    }
-
-
-    /* ==============================
-       CLOSE MISSION
-       ============================== */
-
-    missionButton.addEventListener("click", function() {
-
-        missionPanel.style.display = "none";
-
-    });
+}
 
 
-    /* ==============================
-       OPEN DOOR
-       ============================== */
+/* ==============================
+   CHECK ANSWER
+   ============================== */
 
-    function openDoor() {
+function checkAnswer(answer) {
 
-        if (!hasKey) {
+    if (
+        answer ===
+        areas[currentArea].correct
+    ) {
 
-            message.textContent =
-                "The door is locked. Find the key first!";
+        missionCompleted = true;
 
-            return;
-
-        }
+        hasKey = true;
 
 
         /*
-           If this is Area 1 or Area 2,
-           move to the next area.
+           Show the key in the
+           player's hand.
         */
 
-        if (currentArea < 3) {
-
-            currentArea++;
-
-            changeArea();
-
-        } else {
-
-            winGame();
-
-        }
-
-    }
-
-
-    /* ==============================
-       CHANGE AREA
-       ============================== */
-
-    function changeArea() {
-
-        areaText.textContent =
-            "Area " + currentArea + " / 3";
-
-        hasKey = false;
-
-        missionCompleted = false;
-
-        keyBox.textContent = "🔒";
-
-        keyBox.style.background = "#3b2b4d";
-
-        door.classList.add("locked");
-
-        /*
-           Put player at the left side
-           of the new area.
-        */
-
-        playerX = 8;
-        playerY = 72;
-
-        updatePlayer();
+        player.classList.add("hasKey");
 
 
         /*
-           Change the key box position.
+           Change the box
+           from locked to open.
         */
 
-        if (currentArea === 1) {
+        keyBox.textContent = "📦";
 
-            keyBox.style.left = "70%";
-            keyBox.style.top = "68%";
+        keyBox.style.background =
+            "#4a345d";
 
-        }
 
-        if (currentArea === 2) {
+        /*
+           Unlock the door.
+        */
 
-            keyBox.style.left = "30%";
-            keyBox.style.top = "30%";
-
-        }
-
-        if (currentArea === 3) {
-
-            keyBox.style.left = "65%";
-            keyBox.style.top = "25%";
-
-        }
+        door.classList.remove(
+            "locked"
+        );
 
 
         message.textContent =
-            "Welcome to Area " + currentArea +
-            "! Find the key box.";
+            "Correct! You got the key! 🔑";
+
+
+        missionText.textContent =
+            "Correct! The box is open. You are holding the key! 🔑";
+
+
+        choices.innerHTML = "";
+
+    }
+
+    else {
+
+        message.textContent =
+            "Not correct! Try again.";
+
+    }
+
+}
+
+
+/* ==============================
+   CLOSE MISSION
+   ============================== */
+
+missionButton.addEventListener(
+    "click",
+    function() {
+
+        missionPanel.style.display =
+            "none";
+
+    }
+);
+
+
+/* ==============================
+   OPEN DOOR
+   ============================== */
+
+function openDoor() {
+
+    if (!hasKey) {
+
+        message.textContent =
+            "The door is locked. Find the key first!";
+
+        return;
 
     }
 
 
-    /* ==============================
-       TIMER
-       ============================== */
+    if (currentArea < 3) {
 
-    function startTimer() {
+        currentArea++;
 
-        timer = setInterval(function() {
+        changeArea();
 
-            timeLeft--;
+    }
 
-            updateTimer();
+    else {
+
+        winGame();
+
+    }
+
+}
 
 
-            if (timeLeft <= 0) {
+/* ==============================
+   CHANGE AREA
+   ============================== */
 
-                loseGame();
+function changeArea() {
 
-            }
+    areaText.textContent =
+        "Area " +
+        currentArea +
+        " / 3";
 
-        }, 1000);
+
+    /*
+       The player no longer has
+       the previous area's key.
+    */
+
+    hasKey = false;
+
+    missionCompleted = false;
+
+
+    /*
+       Remove the key from
+       the player's hand.
+    */
+
+    player.classList.remove(
+        "hasKey"
+    );
+
+
+    /*
+       Reset key box.
+    */
+
+    keyBox.textContent = "🔒";
+
+    keyBox.style.background =
+        "#3b2b4d";
+
+
+    /*
+       Lock the door again.
+    */
+
+    door.classList.add(
+        "locked"
+    );
+
+
+    /*
+       Put player at the
+       beginning of the area.
+    */
+
+    playerX = 8;
+
+    playerY = 72;
+
+    updatePlayer();
+
+
+    /*
+       Change key box position.
+    */
+
+    if (currentArea === 1) {
+
+        keyBox.style.left =
+            "70%";
+
+        keyBox.style.top =
+            "68%";
 
     }
 
 
-    function updateTimer() {
+    if (currentArea === 2) {
 
-        let minutes =
-            Math.floor(timeLeft / 60);
+        keyBox.style.left =
+            "30%";
 
-        let seconds =
-            timeLeft % 60;
-
-        let minuteText =
-            minutes.toString().padStart(2, "0");
-
-        let secondText =
-            seconds.toString().padStart(2, "0");
-
-        timerText.textContent =
-            minuteText + ":" + secondText;
-
-
-        /*
-           Make the timer red near the end.
-        */
-
-        if (timeLeft <= 60) {
-
-            timerText.style.color = "#ff9fa8";
-
-        } else {
-
-            timerText.style.color = "#ffffff";
-
-        }
+        keyBox.style.top =
+            "30%";
 
     }
 
 
-    /* ==============================
-       WIN
-       ============================== */
+    if (currentArea === 3) {
 
-    function winGame() {
+        keyBox.style.left =
+            "65%";
 
-        gameOver = true;
-
-        clearInterval(timer);
-
-        endTitle.textContent =
-            "You win 🌟";
-
-        endText.textContent =
-            "You escaped all 3 areas and found the moon! 🌙";
-
-        endScreen.style.display = "flex";
+        keyBox.style.top =
+            "25%";
 
     }
 
 
-    /* ==============================
-       LOSE
-       ============================== */
+    message.textContent =
+        "Welcome to Area " +
+        currentArea +
+        "! Find the key box.";
 
-    function loseGame() {
+}
 
-        gameOver = true;
 
-        clearInterval(timer);
+/* ==============================
+   TIMER
+   ============================== */
 
-        endTitle.textContent =
-            "Time's up! ⏰";
+function startTimer() {
 
-        endText.textContent =
-            "The night is over. Try again!";
+    timer =
+        setInterval(
+            function() {
 
-        endScreen.style.display = "flex";
+                timeLeft--;
+
+                updateTimer();
+
+
+                if (timeLeft <= 0) {
+
+                    loseGame();
+
+                }
+
+            },
+            1000
+        );
+
+}
+
+
+function updateTimer() {
+
+    let minutes =
+        Math.floor(
+            timeLeft / 60
+        );
+
+
+    let seconds =
+        timeLeft % 60;
+
+
+    let minuteText =
+        minutes
+            .toString()
+            .padStart(2, "0");
+
+
+    let secondText =
+        seconds
+            .toString()
+            .padStart(2, "0");
+
+
+    timerText.textContent =
+        minuteText +
+        ":" +
+        secondText;
+
+
+    if (timeLeft <= 60) {
+
+        timerText.style.color =
+            "#ff9fa8";
 
     }
 
+    else {
 
-    /* ==============================
-       RESTART
-       ============================== */
+        timerText.style.color =
+            "#ffffff";
 
-    restartButton.addEventListener("click", function() {
+    }
+
+}
+
+
+/* ==============================
+   WIN
+   ============================== */
+
+function winGame() {
+
+    gameOver = true;
+
+    clearInterval(timer);
+
+
+    endTitle.textContent =
+        "You win 🌟";
+
+
+    endText.textContent =
+        "You escaped all 3 areas and found the moon! 🌙";
+
+
+    endScreen.style.display =
+        "flex";
+
+}
+
+
+/* ==============================
+   LOSE
+   ============================== */
+
+function loseGame() {
+
+    gameOver = true;
+
+    clearInterval(timer);
+
+
+    endTitle.textContent =
+        "Time's up! ⏰";
+
+
+    endText.textContent =
+        "The night is over. Try again!";
+
+
+    endScreen.style.display =
+        "flex";
+
+}
+
+
+/* ==============================
+   RESTART
+   ============================== */
+
+restartButton.addEventListener(
+    "click",
+    function() {
 
         location.reload();
 
-    });
-
-
-    /* ==============================
-       START GAME
-       ============================== */
-
-    function startGame() {
-
-        timeLeft = GAME_TIME;
-
-        currentArea = 1;
-
-        hasKey = false;
-
-        missionCompleted = false;
-
-        gameOver = false;
-
-        playerX = 8;
-
-        playerY = 72;
-
-        keyBox.style.left = "70%";
-        keyBox.style.top = "68%";
-
-        keyBox.textContent = "🔒";
-
-        keyBox.style.background = "#3b2b4d";
-
-        door.classList.add("locked");
-
-        areaText.textContent = "Area 1 / 3";
-
-        message.textContent =
-            "Use the arrow keys to move. Find the key box!";
-
-        updatePlayer();
-
-        updateTimer();
-
-        startTimer();
-
     }
+);
 
 
-    startGame();
+/* ==============================
+   START GAME
+   ============================== */
+
+function startGame() {
+
+    timeLeft = GAME_TIME;
+
+    currentArea = 1;
+
+    hasKey = false;
+
+    missionCompleted = false;
+
+    gameOver = false;
+
+
+    playerX = 8;
+
+    playerY = 72;
+
+
+    keyBox.style.left =
+        "70%";
+
+    keyBox.style.top =
+        "68%";
+
+
+    keyBox.textContent =
+        "🔒";
+
+
+    keyBox.style.background =
+        "#3b2b4d";
+
+
+    door.classList.add(
+        "locked"
+    );
+
+
+    player.classList.remove(
+        "hasKey"
+    );
+
+
+    areaText.textContent =
+        "Area 1 / 3";
+
+
+    message.textContent =
+        "Use the arrow keys to move. Find the key box!";
+
+
+    updatePlayer();
+
+    updateTimer();
+
+    startTimer();
+
+}
+
+
+startGame();
 
 </script>
 
