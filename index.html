@@ -6,6 +6,7 @@
 <title>Find the Moon - Escape Game</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -30,6 +31,7 @@ body {
         linear-gradient(#080612, #120a20);
 }
 
+
 /* =========================
    STARS
 ========================= */
@@ -37,20 +39,69 @@ body {
 .star {
     position: absolute;
     color: white;
-    font-size: 14px;
     opacity: 0.8;
 }
 
-.star1 { left: 8%; top: 12%; }
-.star2 { left: 20%; top: 25%; font-size: 10px; }
-.star3 { left: 35%; top: 10%; }
-.star4 { left: 52%; top: 20%; font-size: 11px; }
-.star5 { left: 68%; top: 9%; }
-.star6 { left: 82%; top: 23%; font-size: 10px; }
-.star7 { left: 92%; top: 12%; }
-.star8 { left: 45%; top: 35%; font-size: 9px; }
-.star9 { left: 15%; top: 42%; font-size: 9px; }
-.star10 { left: 60%; top: 40%; font-size: 10px; }
+.star1 {
+    left: 8%;
+    top: 12%;
+    font-size: 14px;
+}
+
+.star2 {
+    left: 20%;
+    top: 25%;
+    font-size: 10px;
+}
+
+.star3 {
+    left: 35%;
+    top: 10%;
+    font-size: 14px;
+}
+
+.star4 {
+    left: 52%;
+    top: 20%;
+    font-size: 11px;
+}
+
+.star5 {
+    left: 68%;
+    top: 9%;
+    font-size: 14px;
+}
+
+.star6 {
+    left: 82%;
+    top: 23%;
+    font-size: 10px;
+}
+
+.star7 {
+    left: 92%;
+    top: 12%;
+    font-size: 14px;
+}
+
+.star8 {
+    left: 45%;
+    top: 35%;
+    font-size: 9px;
+}
+
+.star9 {
+    left: 15%;
+    top: 42%;
+    font-size: 9px;
+}
+
+.star10 {
+    left: 60%;
+    top: 40%;
+    font-size: 10px;
+}
+
 
 /* =========================
    TOP BAR
@@ -58,13 +109,15 @@ body {
 
 #topBar {
     position: absolute;
+
     top: 0;
     left: 0;
 
     width: 100%;
     height: 70px;
 
-    background: rgba(8, 5, 18, 0.92);
+    background: rgba(8, 5, 18, 0.94);
+
     border-bottom: 1px solid #392452;
 
     display: flex;
@@ -73,25 +126,31 @@ body {
 
     padding: 0 25px;
 
-    z-index: 50;
+    z-index: 100;
 }
 
 #title {
     color: #d8c8ff;
+
     font-size: 22px;
+
     font-weight: bold;
 }
 
 #area {
     color: #b99cff;
+
     font-size: 18px;
 }
 
 #timer {
     color: white;
+
     font-size: 20px;
+
     font-weight: bold;
 }
+
 
 /* =========================
    MOON
@@ -105,8 +164,10 @@ body {
 
     font-size: 65px;
 
-    filter: drop-shadow(0 0 15px #bda6ff);
+    filter:
+        drop-shadow(0 0 15px #bda6ff);
 }
+
 
 /* =========================
    GROUND
@@ -125,6 +186,7 @@ body {
 
     border-top: 2px solid #251737;
 }
+
 
 /* =========================
    HOUSES
@@ -190,8 +252,10 @@ body {
 
 .house2 {
     left: 65%;
+
     transform: scale(0.8);
 }
+
 
 /* =========================
    TREES
@@ -209,12 +273,12 @@ body {
 .tree::before {
     content: "🌲";
 
-    font-size: 75px;
-
     position: absolute;
 
     left: 0;
     top: 0;
+
+    font-size: 75px;
 
     filter: brightness(0.55);
 }
@@ -232,6 +296,7 @@ body {
 
     transform: scale(0.8);
 }
+
 
 /* =========================
    STREET LIGHTS
@@ -258,7 +323,8 @@ body {
 
     font-size: 28px;
 
-    filter: drop-shadow(0 0 8px #d8b8ff);
+    filter:
+        drop-shadow(0 0 8px #d8b8ff);
 }
 
 .light1 {
@@ -268,6 +334,7 @@ body {
 .light2 {
     left: 75%;
 }
+
 
 /* =========================
    PLAYER
@@ -279,22 +346,23 @@ body {
     width: 42px;
     height: 55px;
 
+    left: 10%;
+    bottom: 27%;
+
     background: #a98bca;
 
     border: 3px solid #d8c8ff;
 
     border-radius: 10px;
 
-    left: 12%;
-    bottom: 27%;
-
-    z-index: 20;
+    z-index: 30;
 
     box-shadow:
         0 0 12px rgba(190, 150, 255, 0.5);
 
     transition:
-        bottom 0.12s ease-out;
+        left 0.08s linear,
+        bottom 0.15s ease-out;
 }
 
 #player::before {
@@ -302,23 +370,25 @@ body {
 
     position: absolute;
 
+    top: 10px;
+    left: 8px;
+
     color: #171021;
 
     font-size: 13px;
 
-    top: 10px;
-    left: 8px;
-
     letter-spacing: 3px;
 }
+
 
 /* =========================
    PLAYER JUMP
 ========================= */
 
 #player.jumping {
-    bottom: 48%;
+    bottom: 45%;
 }
+
 
 /* =========================
    KEY IN HAND
@@ -329,35 +399,30 @@ body {
 
     position: absolute;
 
+    right: -20px;
+    top: 15px;
+
     font-size: 22px;
-
-    right: -19px;
-    top: 17px;
-
-    z-index: 30;
 
     transform: rotate(-15deg);
 
-    filter: drop-shadow(0 0 4px #e0caff);
+    filter:
+        drop-shadow(0 0 4px #e0caff);
 }
 
-/* =========================
-   KEY BOX
-========================= */
 
-/*
-   The box is intentionally high.
-   The player needs to jump to reach it.
-*/
+/* =========================
+   HIGH KEY BOX
+========================= */
 
 #keyBox {
     position: absolute;
 
     left: 55%;
-    bottom: 52%;
+    bottom: 50%;
 
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
 
     background: #3b2b4d;
 
@@ -366,27 +431,29 @@ body {
     border-radius: 8px;
 
     display: flex;
-
     justify-content: center;
     align-items: center;
 
     font-size: 28px;
 
-    z-index: 15;
+    z-index: 20;
 
     box-shadow:
-        0 0 12px rgba(120, 80, 160, 0.4);
+        0 0 12px rgba(120, 80, 160, 0.5);
 }
 
-/* Small platform under box */
+
+/* =========================
+   SMALL PLATFORM
+========================= */
 
 #boxPlatform {
     position: absolute;
 
     left: 53.5%;
-    bottom: 47%;
+    bottom: 44%;
 
-    width: 90px;
+    width: 95px;
     height: 12px;
 
     background: #2d1b3d;
@@ -395,8 +462,9 @@ body {
 
     border-radius: 5px;
 
-    z-index: 12;
+    z-index: 15;
 }
+
 
 /* =========================
    DOOR
@@ -417,27 +485,24 @@ body {
 
     border-radius: 8px 8px 0 0;
 
-    z-index: 10;
+    z-index: 20;
 
     display: flex;
 
     justify-content: center;
     align-items: center;
-
-    font-size: 30px;
 }
 
-#door.locked::after {
+#door::after {
     content: "🔒";
-
-    position: absolute;
 
     font-size: 25px;
 }
 
-#door:not(.locked)::after {
+#door.unlocked::after {
     content: "🚪";
 }
+
 
 /* =========================
    MESSAGE
@@ -451,7 +516,7 @@ body {
 
     transform: translateX(-50%);
 
-    width: 80%;
+    width: 85%;
 
     text-align: center;
 
@@ -459,11 +524,30 @@ body {
 
     font-size: 17px;
 
-    z-index: 40;
+    z-index: 60;
 }
 
+
 /* =========================
-   MISSION WINDOW
+   CONTROL HELP
+========================= */
+
+#help {
+    position: absolute;
+
+    left: 20px;
+    bottom: 18px;
+
+    color: #8e78a8;
+
+    font-size: 13px;
+
+    z-index: 60;
+}
+
+
+/* =========================
+   MISSION PANEL
 ========================= */
 
 #missionPanel {
@@ -484,7 +568,7 @@ body {
 
     padding: 25px;
 
-    z-index: 100;
+    z-index: 200;
 
     box-shadow:
         0 0 30px rgba(120, 80, 170, 0.5);
@@ -562,8 +646,9 @@ body {
     cursor: pointer;
 }
 
+
 /* =========================
-   WIN / GAME OVER
+   END SCREEN
 ========================= */
 
 #endScreen {
@@ -584,7 +669,7 @@ body {
 
     flex-direction: column;
 
-    z-index: 200;
+    z-index: 500;
 
     text-align: center;
 }
@@ -625,6 +710,7 @@ body {
     background: #5d3477;
 }
 
+
 /* =========================
    AREA NAME
 ========================= */
@@ -641,24 +727,7 @@ body {
 
     font-size: 14px;
 
-    z-index: 30;
-}
-
-/* =========================
-   JUMP HELP
-========================= */
-
-#jumpHelp {
-    position: absolute;
-
-    left: 20px;
-    bottom: 20px;
-
-    color: #8e78a8;
-
-    font-size: 13px;
-
-    z-index: 40;
+    z-index: 60;
 }
 
 </style>
@@ -683,7 +752,7 @@ body {
     <div class="star star10">✧</div>
 
 
-    <!-- Top Bar -->
+    <!-- Top bar -->
 
     <div id="topBar">
 
@@ -702,7 +771,7 @@ body {
     </div>
 
 
-    <!-- Area Name -->
+    <!-- Area name -->
 
     <div id="areaName">
         Area 1 - The Quiet Street
@@ -748,18 +817,18 @@ body {
     <div class="tree tree3"></div>
 
 
-    <!-- Street Lights -->
+    <!-- Street lights -->
 
     <div class="streetLight light1"></div>
     <div class="streetLight light2"></div>
 
 
-    <!-- Box Platform -->
+    <!-- Platform -->
 
     <div id="boxPlatform"></div>
 
 
-    <!-- Key Box -->
+    <!-- Key box -->
 
     <div id="keyBox">
         🔒
@@ -773,7 +842,7 @@ body {
 
     <!-- Door -->
 
-    <div id="door" class="locked"></div>
+    <div id="door"></div>
 
 
     <!-- Message -->
@@ -784,14 +853,14 @@ body {
     </div>
 
 
-    <!-- Jump Help -->
+    <!-- Controls -->
 
-    <div id="jumpHelp">
+    <div id="help">
         ← ↑ ↓ → Move　|　SPACE Jump
     </div>
 
 
-    <!-- Mission Window -->
+    <!-- Mission panel -->
 
     <div id="missionPanel">
 
@@ -814,7 +883,7 @@ body {
     </div>
 
 
-    <!-- End Screen -->
+    <!-- End screen -->
 
     <div id="endScreen">
 
@@ -860,15 +929,13 @@ let currentQuestion = 0;
    PLAYER SETTINGS
 ===================================== */
 
-let playerX = 12;
+let playerX = 10;
 
 let playerY = 27;
 
-const moveSpeed = 1.4;
+const moveSpeed = 1.5;
 
 let isJumping = false;
-
-let canJump = true;
 
 
 /* =====================================
@@ -933,13 +1000,10 @@ const restart =
 
 const questions = {
 
-    /* AREA 1 */
-
     1: [
 
         {
-            question:
-            "🧮 What is 15 + 7?",
+            question: "🧮 What is 15 + 7?",
 
             choices: [
                 "20",
@@ -953,7 +1017,7 @@ const questions = {
 
         {
             question:
-            "🔢 What number comes next? 2 → 4 → 6 → 8 → ?",
+                "🔢 What number comes next? 2 → 4 → 6 → 8 → ?",
 
             choices: [
                 "9",
@@ -967,7 +1031,7 @@ const questions = {
 
         {
             question:
-            "🍎 You have 5 apples. You eat 2 apples. How many are left?",
+                "🍎 You have 5 apples. You eat 2. How many are left?",
 
             choices: [
                 "2",
@@ -982,13 +1046,10 @@ const questions = {
     ],
 
 
-    /* AREA 2 */
-
     2: [
 
         {
-            question:
-            "🧮 What is 6 × 4?",
+            question: "🧮 What is 6 × 4?",
 
             choices: [
                 "20",
@@ -1002,7 +1063,7 @@ const questions = {
 
         {
             question:
-            "🔢 What comes next? 5 → 10 → 15 → 20 → ?",
+                "🔢 What comes next? 5 → 10 → 15 → 20 → ?",
 
             choices: [
                 "23",
@@ -1016,7 +1077,7 @@ const questions = {
 
         {
             question:
-            "🧠 Which one is different?",
+                "🧠 Which one is different?",
 
             choices: [
                 "🐶 Dog",
@@ -1031,13 +1092,11 @@ const questions = {
     ],
 
 
-    /* AREA 3 */
-
     3: [
 
         {
             question:
-            "🧮 What is 50 - 18?",
+                "🧮 What is 50 - 18?",
 
             choices: [
                 "30",
@@ -1051,7 +1110,7 @@ const questions = {
 
         {
             question:
-            "🔢 What number comes next? 3 → 6 → 12 → 24 → ?",
+                "🔢 What comes next? 3 → 6 → 12 → 24 → ?",
 
             choices: [
                 "36",
@@ -1065,7 +1124,7 @@ const questions = {
 
         {
             question:
-            "🧠 Which word does NOT belong?",
+                "🧠 Which one does NOT belong?",
 
             choices: [
                 "🌙 Moon",
@@ -1088,28 +1147,25 @@ const questions = {
 
 const areaNames = {
 
-    1:
-        "Area 1 - The Quiet Street",
+    1: "Area 1 - The Quiet Street",
 
-    2:
-        "Area 2 - The Purple Forest",
+    2: "Area 2 - The Purple Forest",
 
-    3:
-        "Area 3 - The Moonlit Town"
+    3: "Area 3 - The Moonlit Town"
 
 };
 
 
 /* =====================================
-   TIMER
+   UPDATE TIMER
 ===================================== */
 
 function updateTimer() {
 
-    let minutes =
+    const minutes =
         Math.floor(timeLeft / 60);
 
-    let seconds =
+    const seconds =
         timeLeft % 60;
 
     timer.textContent =
@@ -1120,9 +1176,15 @@ function updateTimer() {
 }
 
 
+/* =====================================
+   TIMER
+===================================== */
+
 setInterval(function() {
 
-    if (gameOver) return;
+    if (gameOver) {
+        return;
+    }
 
     timeLeft--;
 
@@ -1138,14 +1200,21 @@ setInterval(function() {
 
 
 /* =====================================
-   PLAYER MOVEMENT
+   KEYBOARD CONTROLS
 ===================================== */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
-        if (gameOver) return;
+        if (gameOver) {
+            return;
+        }
+
+        /*
+           Do not move while
+           question window is open.
+        */
 
         if (
             missionPanel.style.display ===
@@ -1156,17 +1225,18 @@ document.addEventListener(
 
 
         /* =========================
-           JUMP
+           SPACE = JUMP
         ========================= */
 
-        if (
-            event.code === "Space" &&
-            canJump
-        ) {
+        if (event.code === "Space") {
 
             event.preventDefault();
 
-            jump();
+            if (!isJumping) {
+
+                jump();
+
+            }
 
             return;
         }
@@ -1177,78 +1247,41 @@ document.addEventListener(
         ========================= */
 
         if (
-            event.key === "ArrowUp" ||
-            event.key === "ArrowDown" ||
             event.key === "ArrowLeft" ||
             event.key === "ArrowRight"
         ) {
 
             event.preventDefault();
 
-
-            if (
-                event.key === "ArrowUp"
-            ) {
-
-                playerY += moveSpeed;
-
-            }
-
-
-            if (
-                event.key === "ArrowDown"
-            ) {
-
-                playerY -= moveSpeed;
-
-            }
-
-
-            if (
-                event.key === "ArrowLeft"
-            ) {
+            if (event.key === "ArrowLeft") {
 
                 playerX -= moveSpeed;
 
             }
 
-
-            if (
-                event.key === "ArrowRight"
-            ) {
+            if (event.key === "ArrowRight") {
 
                 playerX += moveSpeed;
 
             }
 
 
-            /* Keep player on screen */
+            /*
+               Keep player on screen.
+            */
 
             playerX =
                 Math.max(
-                    2,
+                    1,
                     Math.min(94, playerX)
-                );
-
-            playerY =
-                Math.max(
-                    27,
-                    Math.min(75, playerY)
                 );
 
 
             player.style.left =
                 playerX + "%";
 
-            if (!isJumping) {
 
-                player.style.bottom =
-                    playerY + "%";
-
-            }
-
-
-            checkObjects();
+            checkDoor();
 
         }
 
@@ -1257,33 +1290,34 @@ document.addEventListener(
 
 
 /* =====================================
-   JUMP FUNCTION
+   JUMP
 ===================================== */
 
 function jump() {
 
-    if (isJumping) return;
+    if (isJumping) {
+        return;
+    }
 
     isJumping = true;
-
-    canJump = false;
 
     player.classList.add("jumping");
 
 
     /*
-       Check the box while jumping.
+       Check the box during
+       the jump.
     */
 
     setTimeout(function() {
 
-        checkObjects();
+        checkKeyBox();
 
-    }, 120);
+    }, 100);
 
 
     /*
-       Player comes back down.
+       Player lands.
     */
 
     setTimeout(function() {
@@ -1294,33 +1328,19 @@ function jump() {
 
         isJumping = false;
 
-        /*
-           Small delay before another jump.
-        */
-
-        setTimeout(function() {
-
-            canJump = true;
-
-        }, 150);
-
-        checkObjects();
-
     }, 450);
 
 }
 
 
 /* =====================================
-   CHECK OBJECTS
+   CHECK KEY BOX
 ===================================== */
 
-function checkObjects() {
+function checkKeyBox() {
 
     if (missionCompleted) {
-
         return;
-
     }
 
 
@@ -1332,15 +1352,28 @@ function checkObjects() {
 
 
     /*
-       Find distance between player
-       and key box.
+       Check if the player is
+       horizontally close to box.
     */
+
+    const playerCenter =
+        playerRect.left +
+        playerRect.width / 2;
+
+    const boxCenter =
+        boxRect.left +
+        boxRect.width / 2;
+
 
     const horizontalDistance =
         Math.abs(
-            playerRect.left -
-            boxRect.left
+            playerCenter - boxCenter
         );
+
+
+    /*
+       Check vertical distance.
+    */
 
     const verticalDistance =
         Math.abs(
@@ -1350,42 +1383,56 @@ function checkObjects() {
 
 
     /*
-       The box can only be reached
-       when the player is jumping.
+       Player must be close
+       AND jumping.
     */
 
     if (
-        horizontalDistance < 80 &&
-        verticalDistance < 100 &&
+        horizontalDistance < 75 &&
+        verticalDistance < 120 &&
         isJumping
     ) {
 
         openMission();
 
-        return;
     }
 
+}
 
-    /*
-       Check door.
-    */
+
+/* =====================================
+   CHECK DOOR
+===================================== */
+
+function checkDoor() {
+
+    const playerRect =
+        player.getBoundingClientRect();
 
     const doorRect =
         door.getBoundingClientRect();
 
-    const doorDistance =
+
+    const playerCenter =
+        playerRect.left +
+        playerRect.width / 2;
+
+    const doorCenter =
+        doorRect.left +
+        doorRect.width / 2;
+
+
+    const distance =
         Math.abs(
-            playerRect.left -
-            doorRect.left
-        )
-        +
-        Math.abs(
-            playerRect.top -
-            doorRect.top
+            playerCenter - doorCenter
         );
 
 
-    if (doorDistance < 100) {
+    /*
+       Player reaches door.
+    */
+
+    if (distance < 65) {
 
         if (hasKey) {
 
@@ -1394,7 +1441,7 @@ function checkObjects() {
         } else {
 
             message.textContent =
-                "🔒 The door is locked. Find the key first!";
+                "🔒 The door is locked! Find the key!";
 
         }
 
@@ -1409,7 +1456,9 @@ function checkObjects() {
 
 function openMission() {
 
-    if (missionCompleted) return;
+    if (missionCompleted) {
+        return;
+    }
 
     missionPanel.style.display =
         "block";
@@ -1502,12 +1551,11 @@ function checkAnswer(
 
 
         /*
-           All 3 questions complete.
+           All 3 questions
+           are correct.
         */
 
-        if (
-            currentQuestion >= 3
-        ) {
+        if (currentQuestion >= 3) {
 
             missionCompleted = true;
 
@@ -1515,7 +1563,7 @@ function checkAnswer(
 
 
             /*
-               Player now holds key.
+               Show key in hand.
             */
 
             player.classList.add(
@@ -1530,6 +1578,7 @@ function checkAnswer(
             keyBox.textContent =
                 "📦";
 
+
             keyBox.style.background =
                 "#4a345d";
 
@@ -1538,13 +1587,13 @@ function checkAnswer(
                Unlock door.
             */
 
-            door.classList.remove(
-                "locked"
+            door.classList.add(
+                "unlocked"
             );
 
 
             message.textContent =
-                "🌟 All 3 questions correct! You got the key! 🔑";
+                "🌟 You got the key! Go to the door! 🔑";
 
 
             progress.textContent =
@@ -1552,7 +1601,7 @@ function checkAnswer(
 
 
             missionText.textContent =
-                "You solved all 3 questions! The key is yours! 🔑";
+                "You solved all 3 questions! You got the key! 🔑";
 
 
             choices.innerHTML = "";
@@ -1584,7 +1633,7 @@ function checkAnswer(
             "❌ Wrong answer. Try again!";
 
         missionText.textContent =
-            "Not quite! Think a little more and try again.";
+            "Not quite! Think a little and try again.";
 
     }
 
@@ -1610,11 +1659,8 @@ function() {
 
 function nextArea() {
 
-    if (!hasKey) return;
-
-
     /*
-       Finish game after Area 3.
+       Area 3 = final win.
     */
 
     if (currentArea >= 3) {
@@ -1635,10 +1681,18 @@ function nextArea() {
     currentQuestion = 0;
 
 
+    /*
+       Remove key from player.
+    */
+
     player.classList.remove(
         "hasKey"
     );
 
+
+    /*
+       Reset box.
+    */
 
     keyBox.textContent =
         "🔒";
@@ -1647,10 +1701,18 @@ function nextArea() {
         "#3b2b4d";
 
 
-    door.classList.add(
-        "locked"
+    /*
+       Lock door again.
+    */
+
+    door.classList.remove(
+        "unlocked"
     );
 
+
+    /*
+       Change area information.
+    */
 
     area.textContent =
         "Area "
@@ -1663,28 +1725,21 @@ function nextArea() {
 
 
     /*
-       Put player back at start.
+       Move player back
+       to the beginning.
     */
 
-    playerX = 12;
-
-    playerY = 27;
-
+    playerX = 10;
 
     player.style.left =
         playerX + "%";
-
-    player.style.bottom =
-        playerY + "%";
 
 
     /*
        Change key box location.
     */
 
-    if (
-        currentArea === 2
-    ) {
+    if (currentArea === 2) {
 
         keyBox.style.left =
             "42%";
@@ -1695,9 +1750,7 @@ function nextArea() {
     }
 
 
-    if (
-        currentArea === 3
-    ) {
+    if (currentArea === 3) {
 
         keyBox.style.left =
             "68%";
@@ -1709,9 +1762,9 @@ function nextArea() {
 
 
     message.textContent =
-        "🌌 Welcome to Area "
+        "🌌 Area "
         + currentArea
-        + "! Find the high key box!";
+        + "! Find the high key box and jump!";
 
 }
 
@@ -1773,7 +1826,7 @@ function() {
 
 
 /* =====================================
-   START GAME
+   START
 ===================================== */
 
 updateTimer();
