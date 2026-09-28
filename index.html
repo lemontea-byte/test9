@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
 
 body {
     margin: 0;
-    background: #05050d;
+    background: #080612;
     color: white;
     font-family: Arial, sans-serif;
     overflow: hidden;
@@ -22,11 +23,12 @@ body {
     width: 100vw;
     height: 100vh;
     position: relative;
-    background:
-        radial-gradient(circle at 20% 20%, #25204a 0%, transparent 18%),
-        radial-gradient(circle at 80% 30%, #191536 0%, transparent 20%),
-        linear-gradient(#080713, #110b20);
     overflow: hidden;
+
+    background:
+        radial-gradient(circle at 20% 20%, #24143d 0%, transparent 20%),
+        radial-gradient(circle at 80% 30%, #17102e 0%, transparent 25%),
+        linear-gradient(#080612, #120a20);
 }
 
 /* =========================
@@ -36,9 +38,58 @@ body {
 .star {
     position: absolute;
     color: white;
-    font-size: 13px;
+    font-size: 14px;
     opacity: 0.8;
-    z-index: 1;
+}
+
+.star1 { left: 8%; top: 12%; }
+.star2 { left: 20%; top: 25%; font-size: 10px; }
+.star3 { left: 35%; top: 10%; }
+.star4 { left: 52%; top: 20%; font-size: 11px; }
+.star5 { left: 68%; top: 9%; }
+.star6 { left: 82%; top: 23%; font-size: 10px; }
+.star7 { left: 92%; top: 12%; }
+.star8 { left: 45%; top: 35%; font-size: 9px; }
+.star9 { left: 15%; top: 42%; font-size: 9px; }
+.star10 { left: 60%; top: 40%; font-size: 10px; }
+
+/* =========================
+   TOP BAR
+========================= */
+
+#topBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+
+    background: rgba(8, 5, 18, 0.92);
+    border-bottom: 1px solid #392452;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 25px;
+    z-index: 50;
+}
+
+#title {
+    color: #d8c8ff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#area {
+    color: #b99cff;
+    font-size: 18px;
+}
+
+#timer {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /* =========================
@@ -48,85 +99,11 @@ body {
 #moon {
     position: absolute;
     right: 8%;
-    top: 8%;
-    font-size: 70px;
-    z-index: 2;
-    filter: drop-shadow(0 0 15px #aaa6ff);
-}
+    top: 12%;
 
-/* =========================
-   TOP BAR
-========================= */
+    font-size: 65px;
 
-#topBar {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 94%;
-    max-width: 900px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 10px 15px;
-
-    background: rgba(10, 8, 25, 0.9);
-
-    border: 1px solid #4b3b70;
-    border-radius: 12px;
-
-    z-index: 20;
-}
-
-#title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #ddd5ff;
-}
-
-#areaText {
-    margin-top: 3px;
-    font-size: 15px;
-    color: #aaa3c7;
-}
-
-#timer {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-}
-
-/* =========================
-   WORLD
-========================= */
-
-#world {
-    position: absolute;
-
-    left: 50%;
-    top: 55%;
-
-    transform: translate(-50%, -50%);
-
-    width: min(92vw, 900px);
-    height: min(70vh, 550px);
-
-    border: 5px solid #35294c;
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            rgba(20, 15, 37, 0.85),
-            rgba(11, 10, 22, 0.95)
-        );
-
-    overflow: hidden;
-
-    box-shadow:
-        0 0 30px rgba(65, 45, 100, 0.4);
+    filter: drop-shadow(0 0 15px #bda6ff);
 }
 
 /* =========================
@@ -135,79 +112,14 @@ body {
 
 #ground {
     position: absolute;
-
     left: 0;
     bottom: 0;
 
     width: 100%;
-    height: 42%;
+    height: 27%;
 
-    background: #111020;
-
-    border-top: 2px solid #282044;
-}
-
-/* =========================
-   PLAYER
-========================= */
-
-#player {
-    position: absolute;
-
-    width: 32px;
-    height: 40px;
-
-    background: #ddd8ff;
-
-    border-radius: 14px 14px 8px 8px;
-
-    z-index: 10;
-
-    box-shadow:
-        0 0 10px #7d6db3;
-}
-
-/* Player eyes */
-
-#player::before {
-    content: "";
-
-    position: absolute;
-
-    width: 8px;
-    height: 8px;
-
-    background: #242039;
-
-    border-radius: 50%;
-
-    left: 7px;
-    top: 11px;
-
-    box-shadow:
-        11px 0 #242039;
-}
-
-/* =========================
-   KEY IN PLAYER'S HAND
-========================= */
-
-#player.hasKey::after {
-    content: "🔑";
-
-    position: absolute;
-
-    font-size: 21px;
-
-    right: -18px;
-    top: 13px;
-
-    z-index: 20;
-
-    transform: rotate(-15deg);
-
-    filter:
-        drop-shadow(0 0 3px #d8c8ff);
+    background: #0d0915;
+    border-top: 2px solid #251737;
 }
 
 /* =========================
@@ -216,61 +128,61 @@ body {
 
 .house {
     position: absolute;
+    bottom: 27%;
 
-    width: 90px;
-    height: 70px;
+    width: 130px;
+    height: 100px;
 
-    background: #28233d;
-
-    border: 3px solid #41345d;
-
-    z-index: 3;
+    background: #21142f;
+    border: 2px solid #3b2750;
 }
-
-/* Roof */
 
 .house::before {
     content: "";
 
     position: absolute;
+    left: -15px;
+    top: -55px;
 
-    left: -12px;
-    top: -45px;
-
-    border-left: 57px solid transparent;
-    border-right: 57px solid transparent;
-    border-bottom: 45px solid #322646;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 55px solid #2c1b40;
 }
 
-/* Window */
-
-.window {
+.house .window {
     position: absolute;
 
-    width: 17px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
 
-    background: #b5a2e8;
+    background: #6d4a89;
+    border: 2px solid #4b315e;
 
-    box-shadow:
-        0 0 10px #8068ba;
+    top: 25px;
+    left: 20px;
 
-    top: 18px;
-    left: 16px;
+    box-shadow: 0 0 10px #8d65a8;
 }
 
-/* House door */
-
-.doorHouse {
+.house .door {
     position: absolute;
 
-    width: 20px;
-    height: 35px;
+    width: 30px;
+    height: 55px;
 
-    background: #161326;
+    background: #120b1b;
 
     bottom: 0;
-    right: 15px;
+    right: 20px;
+}
+
+.house1 {
+    left: 8%;
+}
+
+.house2 {
+    left: 65%;
+    transform: scale(0.8);
 }
 
 /* =========================
@@ -280,42 +192,35 @@ body {
 .tree {
     position: absolute;
 
-    width: 25px;
-    height: 70px;
+    bottom: 27%;
 
-    background: #161a20;
-
-    border-radius: 5px;
-
-    z-index: 4;
+    width: 70px;
+    height: 120px;
 }
 
 .tree::before {
-    content: "";
+    content: "🌲";
+
+    font-size: 75px;
 
     position: absolute;
+    left: 0;
+    top: 0;
 
-    left: -27px;
-    top: -55px;
+    filter: brightness(0.55);
+}
 
-    width: 80px;
-    height: 80px;
+.tree1 {
+    left: 32%;
+}
 
-    background: #17172b;
+.tree2 {
+    left: 52%;
+}
 
-    clip-path: polygon(
-        50% 0%,
-        75% 35%,
-        65% 35%,
-        90% 65%,
-        70% 65%,
-        100% 100%,
-        0% 100%,
-        30% 65%,
-        10% 65%,
-        35% 35%,
-        25% 35%
-    );
+.tree3 {
+    left: 88%;
+    transform: scale(0.8);
 }
 
 /* =========================
@@ -325,31 +230,90 @@ body {
 .streetLight {
     position: absolute;
 
-    width: 6px;
-    height: 100px;
+    bottom: 27%;
 
-    background: #292638;
+    width: 8px;
+    height: 120px;
 
-    z-index: 5;
+    background: #30253a;
 }
 
 .streetLight::before {
-    content: "";
+    content: "💡";
 
     position: absolute;
 
-    width: 35px;
-    height: 35px;
-
-    border-radius: 50%;
-
-    background: #d8c8ff;
-
+    top: -30px;
     left: -14px;
-    top: -17px;
 
-    box-shadow:
-        0 0 25px #9e87d0;
+    font-size: 28px;
+
+    filter: drop-shadow(0 0 8px #d8b8ff);
+}
+
+.light1 {
+    left: 45%;
+}
+
+.light2 {
+    left: 75%;
+}
+
+/* =========================
+   PLAYER
+========================= */
+
+#player {
+    position: absolute;
+
+    width: 42px;
+    height: 55px;
+
+    background: #a98bca;
+
+    border: 3px solid #d8c8ff;
+    border-radius: 10px;
+
+    left: 12%;
+    bottom: 30%;
+
+    z-index: 20;
+
+    box-shadow: 0 0 12px rgba(190, 150, 255, 0.5);
+}
+
+#player::before {
+    content: "• •";
+
+    position: absolute;
+
+    color: #171021;
+
+    font-size: 13px;
+
+    top: 10px;
+    left: 8px;
+
+    letter-spacing: 3px;
+}
+
+/* Key in hand */
+
+#player.hasKey::after {
+    content: "🔑";
+
+    position: absolute;
+
+    font-size: 22px;
+
+    right: -19px;
+    top: 17px;
+
+    z-index: 30;
+
+    transform: rotate(-15deg);
+
+    filter: drop-shadow(0 0 4px #e0caff);
 }
 
 /* =========================
@@ -359,25 +323,25 @@ body {
 #keyBox {
     position: absolute;
 
-    width: 75px;
-    height: 75px;
+    left: 55%;
+    bottom: 31%;
+
+    width: 55px;
+    height: 55px;
 
     background: #3b2b4d;
 
-    border: 4px solid #73528c;
+    border: 3px solid #70558c;
 
     border-radius: 8px;
-
-    z-index: 8;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    font-size: 32px;
+    font-size: 27px;
 
-    box-shadow:
-        0 0 15px rgba(160, 120, 200, 0.4);
+    z-index: 15;
 }
 
 /* =========================
@@ -387,40 +351,64 @@ body {
 #door {
     position: absolute;
 
+    right: 5%;
+    bottom: 27%;
+
     width: 65px;
-    height: 110px;
+    height: 115px;
 
-    background: #251c32;
+    background: #171020;
 
-    border: 5px solid #795687;
+    border: 4px solid #69477f;
 
-    right: 25px;
-    top: 50%;
+    border-radius: 8px 8px 0 0;
 
-    transform: translateY(-50%);
-
-    z-index: 7;
-
-    border-radius: 7px 7px 0 0;
+    z-index: 10;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-    font-size: 28px;
+    font-size: 30px;
 }
 
-#door.locked {
-    opacity: 0.75;
+#door.locked::after {
+    content: "🔒";
+
+    position: absolute;
+
+    font-size: 25px;
 }
 
-#door.open {
-    background: #3e3155;
-    border-color: #b797d0;
+#door:not(.locked)::after {
+    content: "🚪";
 }
 
 /* =========================
-   MISSION PANEL
+   MESSAGE
+========================= */
+
+#message {
+    position: absolute;
+
+    left: 50%;
+    bottom: 8%;
+
+    transform: translateX(-50%);
+
+    width: 80%;
+
+    text-align: center;
+
+    color: #d8c8ff;
+
+    font-size: 17px;
+
+    z-index: 40;
+}
+
+/* =========================
+   MISSION WINDOW
 ========================= */
 
 #missionPanel {
@@ -431,413 +419,272 @@ body {
 
     transform: translate(-50%, -50%);
 
-    width: min(90%, 430px);
+    width: min(600px, 90vw);
 
-    padding: 25px;
+    background: rgba(14, 8, 25, 0.98);
 
-    background: rgba(13, 10, 27, 0.97);
-
-    border: 2px solid #72568c;
+    border: 2px solid #73518c;
 
     border-radius: 15px;
 
-    text-align: center;
+    padding: 25px;
 
-    z-index: 50;
-
-    display: none;
+    z-index: 100;
 
     box-shadow:
-        0 0 30px rgba(80, 50, 100, 0.7);
+        0 0 30px rgba(120, 80, 170, 0.5);
+
+    display: none;
 }
 
 #missionPanel h2 {
     margin-top: 0;
 
-    color: #ddd0ff;
+    color: #d8c8ff;
+
+    text-align: center;
+}
+
+#progress {
+    text-align: center;
+
+    color: #aa8ed0;
+
+    margin-bottom: 15px;
 }
 
 #missionText {
-    line-height: 1.6;
-
-    color: #c6bdd9;
-}
-
-#choices {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    margin-top: 15px;
-}
-
-.choice {
-    padding: 12px 18px;
-
-    background: #252039;
-
-    border: 1px solid #665080;
-
-    color: white;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-}
-
-.choice:hover {
-    background: #3a2d50;
-}
-
-#missionButton {
-    margin-top: 15px;
-
-    padding: 12px 25px;
-
-    background: #4d3761;
-
-    color: white;
-
-    border: 1px solid #9273aa;
-
-    border-radius: 8px;
-
-    cursor: pointer;
-
-    font-size: 16px;
-}
-
-#missionButton:hover {
-    background: #624777;
-}
-
-/* =========================
-   MESSAGE
-========================= */
-
-#message {
-    position: absolute;
-
-    bottom: 15px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    background: rgba(8, 7, 18, 0.9);
-
-    border: 1px solid #403358;
-
-    padding: 10px 18px;
-
-    border-radius: 10px;
-
-    color: #d5c9ec;
-
-    z-index: 30;
-
     text-align: center;
 
-    min-width: 250px;
+    font-size: 19px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+.choiceButton {
+    display: block;
+
+    width: 100%;
+
+    margin: 10px 0;
+
+    padding: 13px;
+
+    background: #2c1b40;
+
+    color: white;
+
+    border: 1px solid #6d4b82;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.choiceButton:hover {
+    background: #4a2b5e;
+}
+
+#closeMission {
+    display: block;
+
+    margin: 20px auto 0;
+
+    padding: 9px 25px;
+
+    background: #181020;
+
+    color: #cdb8e8;
+
+    border: 1px solid #624778;
+
+    border-radius: 7px;
+
+    cursor: pointer;
 }
 
 /* =========================
-   END SCREEN
+   WIN / GAME OVER
 ========================= */
 
 #endScreen {
     position: absolute;
 
-    inset: 0;
+    left: 0;
+    top: 0;
 
-    background: rgba(5, 4, 12, 0.96);
+    width: 100%;
+    height: 100%;
 
-    z-index: 100;
+    background: rgba(5, 3, 12, 0.96);
 
     display: none;
 
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     flex-direction: column;
+
+    z-index: 200;
 
     text-align: center;
 }
 
 #endScreen h1 {
-    font-size: 45px;
+    color: #d8c8ff;
 
-    color: #e4d8ff;
+    font-size: 50px;
 
     margin-bottom: 10px;
 }
 
 #endScreen p {
-    color: #aaa2bf;
+    font-size: 20px;
 
-    font-size: 18px;
+    color: #bba7cf;
 }
 
-#restartButton {
+#restart {
     margin-top: 20px;
 
-    padding: 13px 30px;
+    padding: 12px 30px;
 
-    font-size: 17px;
-
-    background: #4c3762;
+    background: #43265b;
 
     color: white;
 
-    border: 1px solid #9877b1;
+    border: 1px solid #8962a3;
 
-    border-radius: 10px;
+    border-radius: 8px;
+
+    font-size: 17px;
 
     cursor: pointer;
 }
 
-#restartButton:hover {
-    background: #624777;
+#restart:hover {
+    background: #5d3477;
 }
 
 /* =========================
-   MOBILE
+   AREA NAME
 ========================= */
 
-@media (max-width: 600px) {
+#areaName {
+    position: absolute;
 
-    #title {
-        font-size: 15px;
-    }
+    left: 50%;
+    top: 82px;
 
-    #timer {
-        font-size: 16px;
-    }
+    transform: translateX(-50%);
 
-    #areaText {
-        font-size: 12px;
-    }
+    color: #8066a0;
 
-    #moon {
-        font-size: 45px;
-    }
+    font-size: 14px;
 
-    #world {
-        height: 65vh;
-    }
-
-    #player.hasKey::after {
-        font-size: 18px;
-        right: -16px;
-    }
+    z-index: 30;
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div id="game">
 
-    <!-- =========================
-         STARS
-    ========================== -->
+    <!-- Stars -->
+    <div class="star star1">✦</div>
+    <div class="star star2">✧</div>
+    <div class="star star3">✦</div>
+    <div class="star star4">✧</div>
+    <div class="star star5">✦</div>
+    <div class="star star6">✧</div>
+    <div class="star star7">✦</div>
+    <div class="star star8">✧</div>
+    <div class="star star9">✦</div>
+    <div class="star star10">✧</div>
 
-    <div class="star" style="left:5%;top:12%;">✦</div>
-    <div class="star" style="left:12%;top:25%;">★</div>
-    <div class="star" style="left:20%;top:8%;">✦</div>
-    <div class="star" style="left:30%;top:18%;">·</div>
-    <div class="star" style="left:40%;top:7%;">★</div>
-    <div class="star" style="left:52%;top:20%;">✦</div>
-    <div class="star" style="left:65%;top:10%;">·</div>
-    <div class="star" style="left:73%;top:25%;">★</div>
-    <div class="star" style="left:86%;top:18%;">✦</div>
-    <div class="star" style="left:93%;top:35%;">·</div>
+    <!-- Top Bar -->
+    <div id="topBar">
+        <div id="title">🌙 Find the Moon</div>
+        <div id="area">Area 1 / 3</div>
+        <div id="timer">05:00</div>
+    </div>
 
+    <div id="areaName">Area 1 - The Quiet Street</div>
 
     <!-- Moon -->
+    <div id="moon">🌙</div>
 
-    <div id="moon">
-        🌙
+    <!-- Ground -->
+    <div id="ground"></div>
+
+    <!-- Houses -->
+    <div class="house house1">
+        <div class="window"></div>
+        <div class="door"></div>
     </div>
 
-
-    <!-- =========================
-         TOP BAR
-    ========================== -->
-
-    <div id="topBar">
-
-        <div>
-
-            <div id="title">
-                🌙 Find the Moon - Escape Game
-            </div>
-
-            <div id="areaText">
-                Area 1 / 3
-            </div>
-
-        </div>
-
-        <div id="timer">
-            05:00
-        </div>
-
+    <div class="house house2">
+        <div class="window"></div>
+        <div class="door"></div>
     </div>
 
+    <!-- Trees -->
+    <div class="tree tree1"></div>
+    <div class="tree tree2"></div>
+    <div class="tree tree3"></div>
 
-    <!-- =========================
-         GAME WORLD
-    ========================== -->
+    <!-- Street Lights -->
+    <div class="streetLight light1"></div>
+    <div class="streetLight light2"></div>
 
-    <div id="world">
+    <!-- Player -->
+    <div id="player"></div>
 
-        <div id="ground"></div>
+    <!-- Key Box -->
+    <div id="keyBox">🔒</div>
 
+    <!-- Door -->
+    <div id="door" class="locked"></div>
 
-        <!-- House 1 -->
-
-        <div
-            class="house"
-            style="left:8%;bottom:40%;"
-        >
-
-            <div class="window"></div>
-
-            <div class="doorHouse"></div>
-
-        </div>
-
-
-        <!-- House 2 -->
-
-        <div
-            class="house"
-            style="left:52%;bottom:43%;"
-        >
-
-            <div class="window"></div>
-
-            <div class="doorHouse"></div>
-
-        </div>
-
-
-        <!-- Trees -->
-
-        <div
-            class="tree"
-            style="left:30%;bottom:40%;"
-        ></div>
-
-        <div
-            class="tree"
-            style="left:72%;bottom:39%;"
-        ></div>
-
-        <div
-            class="tree"
-            style="left:85%;bottom:45%;"
-        ></div>
-
-
-        <!-- Street lights -->
-
-        <div
-            class="streetLight"
-            style="left:25%;bottom:40%;"
-        ></div>
-
-        <div
-            class="streetLight"
-            style="left:68%;bottom:40%;"
-        ></div>
-
-
-        <!-- Key Box -->
-
-        <div id="keyBox">
-            🔒
-        </div>
-
-
-        <!-- Exit Door -->
-
-        <div
-            id="door"
-            class="locked"
-        >
-            🚪
-        </div>
-
-
-        <!-- Player -->
-
-        <div id="player"></div>
-
+    <!-- Message -->
+    <div id="message">
+        Use the arrow keys to explore the area.
     </div>
 
-
-    <!-- =========================
-         MISSION PANEL
-    ========================== -->
-
+    <!-- Mission -->
     <div id="missionPanel">
 
-        <h2>
-            🔒 Key Box
-        </h2>
+        <h2>🔐 Key Box Challenge</h2>
 
-        <div id="missionText">
-            Complete the small mission to open the box!
+        <div id="progress">
+            Question 1 / 3
         </div>
+
+        <div id="missionText"></div>
 
         <div id="choices"></div>
 
-        <button
-            id="missionButton"
-            type="button"
-        >
+        <button id="closeMission">
             Close
         </button>
 
     </div>
 
-
-    <!-- =========================
-         MESSAGE
-    ========================== -->
-
-    <div id="message">
-        Use the arrow keys to move.
-    </div>
-
-
-    <!-- =========================
-         END SCREEN
-    ========================== -->
-
+    <!-- End Screen -->
     <div id="endScreen">
 
-        <h1 id="endTitle">
-            You win 🌟
-        </h1>
+        <h1 id="endTitle">You win 🌟</h1>
 
         <p id="endText">
-            You escaped the night!
+            You escaped all 3 areas!
         </p>
 
-        <button
-            id="restartButton"
-            type="button"
-        >
+        <button id="restart">
             Play Again
         </button>
 
@@ -845,18 +692,15 @@ body {
 
 </div>
 
-
 <script>
 
-/* ==========================================
+/* =====================================
    GAME SETTINGS
-========================================== */
+===================================== */
 
 const GAME_TIME = 300;
 
 let timeLeft = GAME_TIME;
-
-let timer;
 
 let currentArea = 1;
 
@@ -866,244 +710,343 @@ let missionCompleted = false;
 
 let gameOver = false;
 
-
-/* ==========================================
-   PLAYER
-========================================== */
-
-let playerX = 8;
-
-let playerY = 72;
-
-const moveSpeed = 2.5;
+let currentQuestion = 0;
 
 
-/* ==========================================
+/* =====================================
    HTML ELEMENTS
-========================================== */
+===================================== */
 
-const player =
-    document.getElementById("player");
+const player = document.getElementById("player");
 
-const keyBox =
-    document.getElementById("keyBox");
+const keyBox = document.getElementById("keyBox");
 
-const door =
-    document.getElementById("door");
+const door = document.getElementById("door");
 
-const timerText =
-    document.getElementById("timer");
+const message = document.getElementById("message");
 
-const areaText =
-    document.getElementById("areaText");
+const timer = document.getElementById("timer");
 
-const message =
-    document.getElementById("message");
+const area = document.getElementById("area");
 
-const missionPanel =
-    document.getElementById("missionPanel");
+const areaName = document.getElementById("areaName");
 
-const missionText =
-    document.getElementById("missionText");
+const missionPanel = document.getElementById("missionPanel");
 
-const choices =
-    document.getElementById("choices");
+const missionText = document.getElementById("missionText");
 
-const missionButton =
-    document.getElementById("missionButton");
+const choices = document.getElementById("choices");
 
-const endScreen =
-    document.getElementById("endScreen");
+const progress = document.getElementById("progress");
 
-const endTitle =
-    document.getElementById("endTitle");
+const closeMission = document.getElementById("closeMission");
 
-const endText =
-    document.getElementById("endText");
+const endScreen = document.getElementById("endScreen");
 
-const restartButton =
-    document.getElementById("restartButton");
+const endTitle = document.getElementById("endTitle");
+
+const endText = document.getElementById("endText");
+
+const restart = document.getElementById("restart");
 
 
-/* ==========================================
-   MISSIONS
-========================================== */
+/* =====================================
+   PLAYER POSITION
+===================================== */
 
-const areas = {
+let playerX = 12;
 
-    1: {
+let playerY = 30;
 
-        mission:
-            "Find the correct number: 2 + 3 = ?",
-
-        answers:
-            ["4", "5", "6"],
-
-        correct:
-            "5"
-
-    },
+const moveSpeed = 1.4;
 
 
-    2: {
+/* =====================================
+   QUESTIONS
+===================================== */
 
-        mission:
-            "Which one is different? 🌙 ⭐ 🌲 🍎",
+/*
+   Each area has 3 questions.
 
-        answers:
-            ["🌙", "⭐", "🌲", "🍎"],
+   The questions are a little harder
+   than the previous version.
+*/
 
-        correct:
-            "🍎"
+const questions = {
 
-    },
+    1: [
 
+        {
+            question:
+            "🧮 If 3 cats catch 3 mice in 3 minutes, how many cats are needed to catch 6 mice in 3 minutes?",
 
-    3: {
+            choices: [
+                "3 cats",
+                "6 cats",
+                "9 cats",
+                "12 cats"
+            ],
 
-        mission:
-            "Remember this: BLUE → PURPLE → BLACK. What comes after PURPLE?",
+            answer: 1
+        },
 
-        answers:
-            ["BLUE", "PURPLE", "BLACK"],
+        {
+            question:
+            "🔢 What number comes next? 2 → 6 → 12 → 20 → ?",
 
-        correct:
-            "BLACK"
+            choices: [
+                "24",
+                "28",
+                "30",
+                "32"
+            ],
 
-    }
+            answer: 2
+        },
+
+        {
+            question:
+            "🧠 A farmer has 17 sheep. All but 9 run away. How many sheep are left?",
+
+            choices: [
+                "8",
+                "9",
+                "10",
+                "17"
+            ],
+
+            answer: 1
+        }
+
+    ],
+
+    2: [
+
+        {
+            question:
+            "🔢 What number should replace the ? 5, 10, 20, 40, ?",
+
+            choices: [
+                "50",
+                "60",
+                "70",
+                "80"
+            ],
+
+            answer: 3
+        },
+
+        {
+            question:
+            "🧠 You have 3 boxes. One contains apples, one contains oranges, and one contains both. All labels are wrong. If you take one fruit from one box, which labeled box should you choose to identify all boxes?",
+
+            choices: [
+                "The box labeled Apples",
+                "The box labeled Oranges",
+                "The box labeled Apples and Oranges",
+                "Any box"
+            ],
+
+            answer: 2
+        },
+
+        {
+            question:
+            "🔤 If CAT becomes DBU, what does DOG become?",
+
+            choices: [
+                "EPH",
+                "EPG",
+                "EOH",
+                "FPH"
+            ],
+
+            answer: 0
+        }
+
+    ],
+
+    3: [
+
+        {
+            question:
+            "🧮 A clock shows 3:00. What is the angle between the hour hand and minute hand?",
+
+            choices: [
+                "30 degrees",
+                "60 degrees",
+                "90 degrees",
+                "180 degrees"
+            ],
+
+            answer: 2
+        },
+
+        {
+            question:
+            "🔢 What comes next? 1, 1, 2, 3, 5, 8, ?",
+
+            choices: [
+                "10",
+                "11",
+                "12",
+                "13"
+            ],
+
+            answer: 3
+        },
+
+        {
+            question:
+            "🧠 You have 8 balls. One ball is heavier than the others. Using a balance scale, what is the minimum number of weighings needed to find it?",
+
+            choices: [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+
+            answer: 2
+        }
+
+    ]
 
 };
 
 
-/* ==========================================
-   UPDATE PLAYER
-========================================== */
+/* =====================================
+   AREA INFORMATION
+===================================== */
 
-function updatePlayer() {
+const areaNames = {
 
-    player.style.left =
-        playerX + "%";
+    1: "Area 1 - The Quiet Street",
 
-    player.style.top =
-        playerY + "%";
+    2: "Area 2 - The Purple Forest",
+
+    3: "Area 3 - The Moonlit Town"
+
+};
+
+
+/* =====================================
+   UPDATE TIMER
+===================================== */
+
+function updateTimer() {
+
+    let minutes = Math.floor(timeLeft / 60);
+
+    let seconds = timeLeft % 60;
+
+    timer.textContent =
+        String(minutes).padStart(2, "0")
+        + ":"
+        + String(seconds).padStart(2, "0");
 
 }
 
 
-/* ==========================================
+/* =====================================
+   TIMER
+===================================== */
+
+const timerInterval = setInterval(() => {
+
+    if (gameOver) return;
+
+    timeLeft--;
+
+    updateTimer();
+
+    if (timeLeft <= 0) {
+
+        loseGame();
+
+    }
+
+}, 1000);
+
+
+/* =====================================
    PLAYER MOVEMENT
-========================================== */
+===================================== */
 
-document.addEventListener(
-    "keydown",
-    function(event) {
+document.addEventListener("keydown", function(event) {
 
-        if (gameOver) {
-            return;
-        }
+    if (gameOver) return;
 
+    if (missionPanel.style.display === "block") {
+        return;
+    }
 
-        if (
-            missionPanel.style.display === "block"
-        ) {
-            return;
-        }
+    if (
+        event.key === "ArrowUp" ||
+        event.key === "ArrowDown" ||
+        event.key === "ArrowLeft" ||
+        event.key === "ArrowRight"
+    ) {
 
-
-        if (
-            event.key === "ArrowUp" ||
-            event.key === "ArrowDown" ||
-            event.key === "ArrowLeft" ||
-            event.key === "ArrowRight"
-        ) {
-
-            event.preventDefault();
-
-        }
-
+        event.preventDefault();
 
         if (event.key === "ArrowUp") {
-            playerY -= moveSpeed;
-        }
-
-
-        if (event.key === "ArrowDown") {
             playerY += moveSpeed;
         }
 
+        if (event.key === "ArrowDown") {
+            playerY -= moveSpeed;
+        }
 
         if (event.key === "ArrowLeft") {
             playerX -= moveSpeed;
         }
 
-
         if (event.key === "ArrowRight") {
             playerX += moveSpeed;
         }
 
+        /* Keep player inside screen */
 
-        /* Keep player inside the world */
+        playerX = Math.max(2, Math.min(94, playerX));
 
-        playerX =
-            Math.max(
-                3,
-                Math.min(91, playerX)
-            );
+        playerY = Math.max(27, Math.min(78, playerY));
 
-        playerY =
-            Math.max(
-                8,
-                Math.min(86, playerY)
-            );
+        player.style.left = playerX + "%";
 
-
-        updatePlayer();
+        player.style.bottom = playerY + "%";
 
         checkObjects();
 
     }
-);
+
+});
 
 
-/* ==========================================
-   CHECK OBJECTS
-========================================== */
+/* =====================================
+   CHECK BOX AND DOOR
+===================================== */
 
 function checkObjects() {
 
-    let boxX;
+    const playerRect = player.getBoundingClientRect();
 
-    let boxY;
+    const boxRect = keyBox.getBoundingClientRect();
 
-
-    if (currentArea === 1) {
-
-        boxX = 70;
-        boxY = 68;
-
-    }
-
-    else if (currentArea === 2) {
-
-        boxX = 30;
-        boxY = 30;
-
-    }
-
-    else {
-
-        boxX = 65;
-        boxY = 25;
-
-    }
+    const doorRect = door.getBoundingClientRect();
 
 
-    /* Check key box */
+    /* Near key box */
+
+    const boxDistance =
+        Math.abs(playerRect.left - boxRect.left)
+        +
+        Math.abs(playerRect.top - boxRect.top);
+
 
     if (
-        !missionCompleted &&
-        Math.abs(playerX - boxX) < 8 &&
-        Math.abs(playerY - boxY) < 10
+        boxDistance < 100 &&
+        !missionCompleted
     ) {
 
         openMission();
@@ -1111,503 +1054,300 @@ function checkObjects() {
     }
 
 
-    /* Check exit door */
+    /* Near door */
 
-    if (
-        hasKey &&
-        playerX > 82 &&
-        playerY > 35 &&
-        playerY < 75
-    ) {
+    const doorDistance =
+        Math.abs(playerRect.left - doorRect.left)
+        +
+        Math.abs(playerRect.top - doorRect.top);
 
-        openDoor();
+
+    if (doorDistance < 100) {
+
+        if (hasKey) {
+
+            nextArea();
+
+        } else {
+
+            message.textContent =
+                "🔒 The door is locked. Find the key first!";
+
+        }
 
     }
 
 }
 
 
-/* ==========================================
+/* =====================================
    OPEN MISSION
-========================================== */
+===================================== */
 
 function openMission() {
 
-    missionPanel.style.display =
-        "block";
+    if (missionCompleted) return;
 
+    missionPanel.style.display = "block";
+
+    currentQuestion = 0;
+
+    showQuestion();
+
+}
+
+
+/* =====================================
+   SHOW QUESTION
+===================================== */
+
+function showQuestion() {
+
+    const areaQuestions = questions[currentArea];
+
+    const question = areaQuestions[currentQuestion];
+
+    progress.textContent =
+        "Question "
+        + (currentQuestion + 1)
+        + " / 3";
 
     missionText.textContent =
-        areas[currentArea].mission;
-
+        question.question;
 
     choices.innerHTML = "";
 
 
-    const answers =
-        areas[currentArea].answers;
+    question.choices.forEach((choice, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "choiceButton";
+
+        button.textContent = choice;
+
+        button.onclick = function() {
+
+            checkAnswer(index);
+
+        };
+
+        choices.appendChild(button);
+
+    });
+
+}
 
 
-    answers.forEach(
-        function(answer) {
+/* =====================================
+   CHECK ANSWER
+===================================== */
 
-            const button =
-                document.createElement("button");
+function checkAnswer(selectedAnswer) {
 
-            button.className =
-                "choice";
-
-            button.type =
-                "button";
-
-            button.textContent =
-                answer;
+    const question =
+        questions[currentArea][currentQuestion];
 
 
-            button.addEventListener(
-                "click",
-                function() {
+    if (selectedAnswer === question.answer) {
 
-                    checkAnswer(answer);
+        currentQuestion++;
 
-                }
-            );
+        /* All 3 questions are correct */
 
+        if (currentQuestion >= 3) {
 
-            choices.appendChild(button);
+            missionCompleted = true;
+
+            hasKey = true;
+
+            player.classList.add("hasKey");
+
+            keyBox.textContent = "📦";
+
+            keyBox.style.background = "#4a345d";
+
+            door.classList.remove("locked");
+
+            message.textContent =
+                "🌟 All 3 questions correct! You got the key! 🔑";
+
+            missionText.textContent =
+                "Amazing! You solved all 3 questions and got the key! 🔑";
+
+            progress.textContent =
+                "Challenge Complete!";
+
+            choices.innerHTML = "";
+
+        } else {
+
+            missionText.textContent =
+                "Correct! ✨ Next question!";
+
+            setTimeout(() => {
+
+                showQuestion();
+
+            }, 600);
 
         }
-    );
 
-}
-
-
-/* ==========================================
-   CHECK ANSWER
-========================================== */
-
-function checkAnswer(answer) {
-
-    if (
-        answer ===
-        areas[currentArea].correct
-    ) {
-
-        missionCompleted = true;
-
-        hasKey = true;
-
-
-        /*
-         * Show key in player's hand.
-         */
-
-        player.classList.add(
-            "hasKey"
-        );
-
-
-        /*
-         * Change box.
-         */
-
-        keyBox.textContent =
-            "📦";
-
-
-        keyBox.style.background =
-            "#4a345d";
-
-
-        /*
-         * Unlock door.
-         */
-
-        door.classList.remove(
-            "locked"
-        );
-
+    } else {
 
         message.textContent =
-            "Correct! You got the key! 🔑";
-
+            "❌ Wrong answer. Try again!";
 
         missionText.textContent =
-            "Correct! You are holding the key! 🔑";
-
-
-        choices.innerHTML = "";
-
-    }
-
-    else {
-
-        message.textContent =
-            "Not correct! Try again.";
+            "Not quite... Think carefully and try again.";
 
     }
 
 }
 
 
-/* ==========================================
+/* =====================================
    CLOSE MISSION
-========================================== */
+===================================== */
 
-missionButton.addEventListener(
-    "click",
-    function() {
+closeMission.onclick = function() {
 
-        missionPanel.style.display =
-            "none";
+    missionPanel.style.display = "none";
 
-    }
-);
+};
 
 
-/* ==========================================
-   OPEN DOOR
-========================================== */
+/* =====================================
+   NEXT AREA
+===================================== */
 
-function openDoor() {
+function nextArea() {
 
-    if (!hasKey) {
+    if (!hasKey) return;
 
-        message.textContent =
-            "The door is locked. Find the key first!";
+
+    if (currentArea >= 3) {
+
+        winGame();
 
         return;
 
     }
 
 
-    if (currentArea < 3) {
-
-        currentArea++;
-
-        changeArea();
-
-    }
-
-    else {
-
-        winGame();
-
-    }
-
-}
-
-
-/* ==========================================
-   CHANGE AREA
-========================================== */
-
-function changeArea() {
-
-    areaText.textContent =
-        "Area " +
-        currentArea +
-        " / 3";
-
-
-    /*
-     * Remove previous key.
-     */
+    currentArea++;
 
     hasKey = false;
 
     missionCompleted = false;
 
+    currentQuestion = 0;
 
-    /*
-     * Remove key from player's hand.
-     */
+    player.classList.remove("hasKey");
 
-    player.classList.remove(
-        "hasKey"
-    );
+    keyBox.textContent = "🔒";
 
+    keyBox.style.background = "#3b2b4d";
 
-    /*
-     * Reset key box.
-     */
-
-    keyBox.textContent =
-        "🔒";
-
-    keyBox.style.background =
-        "#3b2b4d";
+    door.classList.add("locked");
 
 
-    /*
-     * Lock door again.
-     */
+    area.textContent =
+        "Area " + currentArea + " / 3";
 
-    door.classList.add(
-        "locked"
-    );
+    areaName.textContent =
+        areaNames[currentArea];
 
 
-    /*
-     * Move player to start.
-     */
+    /* Move player to the beginning */
 
-    playerX = 8;
+    playerX = 12;
 
-    playerY = 72;
+    playerY = 30;
 
-    updatePlayer();
+    player.style.left = playerX + "%";
 
-
-    /*
-     * Move key box.
-     */
-
-    if (currentArea === 1) {
-
-        keyBox.style.left =
-            "70%";
-
-        keyBox.style.top =
-            "68%";
-
-    }
-
-
-    if (currentArea === 2) {
-
-        keyBox.style.left =
-            "30%";
-
-        keyBox.style.top =
-            "30%";
-
-    }
-
-
-    if (currentArea === 3) {
-
-        keyBox.style.left =
-            "65%";
-
-        keyBox.style.top =
-            "25%";
-
-    }
+    player.style.bottom = playerY + "%";
 
 
     message.textContent =
-        "Welcome to Area " +
-        currentArea +
-        "! Find the key box.";
-
-}
+        "🌌 Welcome to Area "
+        + currentArea
+        + ". Find the key box!";
 
 
-/* ==========================================
-   TIMER
-========================================== */
+    /* Change the box position */
 
-function startTimer() {
+    if (currentArea === 2) {
 
-    timer =
-        setInterval(
-            function() {
-
-                timeLeft--;
-
-                updateTimer();
-
-
-                if (timeLeft <= 0) {
-
-                    loseGame();
-
-                }
-
-            },
-            1000
-        );
-
-}
-
-
-function updateTimer() {
-
-    const minutes =
-        Math.floor(
-            timeLeft / 60
-        );
-
-
-    const seconds =
-        timeLeft % 60;
-
-
-    const minuteText =
-        minutes
-            .toString()
-            .padStart(2, "0");
-
-
-    const secondText =
-        seconds
-            .toString()
-            .padStart(2, "0");
-
-
-    timerText.textContent =
-        minuteText +
-        ":" +
-        secondText;
-
-
-    if (timeLeft <= 60) {
-
-        timerText.style.color =
-            "#ff9fa8";
+        keyBox.style.left = "42%";
 
     }
 
-    else {
+    if (currentArea === 3) {
 
-        timerText.style.color =
-            "#ffffff";
+        keyBox.style.left = "68%";
 
     }
 
 }
 
 
-/* ==========================================
+/* =====================================
    WIN
-========================================== */
+===================================== */
 
 function winGame() {
 
     gameOver = true;
 
-    clearInterval(timer);
-
+    endScreen.style.display = "flex";
 
     endTitle.textContent =
         "You win 🌟";
 
-
     endText.textContent =
         "You escaped all 3 areas and found the moon! 🌙";
-
-
-    endScreen.style.display =
-        "flex";
 
 }
 
 
-/* ==========================================
-   GAME OVER
-========================================== */
+/* =====================================
+   LOSE
+===================================== */
 
 function loseGame() {
 
     gameOver = true;
 
-    clearInterval(timer);
-
+    endScreen.style.display = "flex";
 
     endTitle.textContent =
         "Time's up! ⏰";
 
-
     endText.textContent =
-        "The night is over. Try again!";
-
-
-    endScreen.style.display =
-        "flex";
+        "The night is over... Try again!";
 
 }
 
 
-/* ==========================================
+/* =====================================
    RESTART
-========================================== */
+===================================== */
 
-restartButton.addEventListener(
-    "click",
-    function() {
+restart.onclick = function() {
 
-        location.reload();
+    location.reload();
 
-    }
-);
+};
 
 
-/* ==========================================
+/* =====================================
    START GAME
-========================================== */
+===================================== */
 
-function startGame() {
-
-    timeLeft = GAME_TIME;
-
-    currentArea = 1;
-
-    hasKey = false;
-
-    missionCompleted = false;
-
-    gameOver = false;
-
-
-    playerX = 8;
-
-    playerY = 72;
-
-
-    keyBox.style.left =
-        "70%";
-
-    keyBox.style.top =
-        "68%";
-
-
-    keyBox.textContent =
-        "🔒";
-
-
-    keyBox.style.background =
-        "#3b2b4d";
-
-
-    door.classList.add(
-        "locked"
-    );
-
-
-    player.classList.remove(
-        "hasKey"
-    );
-
-
-    areaText.textContent =
-        "Area 1 / 3";
-
-
-    message.textContent =
-        "Use the arrow keys to move. Find the key box!";
-
-
-    updatePlayer();
-
-    updateTimer();
-
-    startTimer();
-
-}
-
-
-startGame();
+updateTimer();
 
 </script>
 
